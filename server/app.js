@@ -1,9 +1,10 @@
 require ('dotenv').config();
 const helmet = require("helmet");
 const express = require('express');
-const app = express();
-
 const mongoose = require('mongoose');
+
+const app = express();
+const port = process.env.PORT || 3000;
 const url = process.env.MONGO_URL;
 const dbName = 'monsters';
 
@@ -30,4 +31,4 @@ app.use(helmet());
 
 app.use(monstersRoutes);
 
-app.listen(3000);
+app.listen(port);
