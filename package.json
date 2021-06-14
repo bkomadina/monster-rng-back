@@ -1,0 +1,24 @@
+{
+  "name": "monster-rng-fullstack",
+  "version": "1.0.0",
+  "description": "Monster generator and combat app",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bartol Komadina",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.12.10"
+  },
+  "devDependencies": {
+    "dotenv": "^9.0.2"
+  },
+  "engines": {
+    "node": "14.15.4"
+  }
+}
