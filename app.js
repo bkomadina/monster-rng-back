@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const url = process.env.MONGO_URL;
+const url = process.env.DATABASE_URL;
 const dbName = 'monsters';
 
 const monstersRoutes = require('./routes/monsters');
