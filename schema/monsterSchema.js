@@ -7,7 +7,7 @@ const monsterSchema = new mongoose.Schema({
     minLength: [2, 'Minimum length is 2'],
     maxLength: [20, 'Maximum length is 20'],
     required: true,
-    validate: /[!@#$%^&*]<>/
+    // validate: /[!@#$%^&*]<>/
   },
   HP: {
     type: Number,
