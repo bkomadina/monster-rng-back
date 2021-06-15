@@ -7,7 +7,13 @@ const monsterSchema = new mongoose.Schema({
     minLength: [2, 'Minimum length is 2'],
     maxLength: [20, 'Maximum length is 20'],
     required: true,
-    // validate: /[!@#$%^&*]<>/
+    validate: {
+      validator: function (v) {
+        const specialChar = /[`~!@#$%^&*+=><']/g.test(v);
+        return (specialChar ? false : true);
+      },
+      message: 'No special characters allowed',
+    },
   },
   HP: {
     type: Number,
