@@ -3,11 +3,12 @@ const router = express.Router();
 const Monster = require('../schema/monsterSchema');
 
 router.post('/add-monster', async (req, res) => {
+  const { name, HP, damage, difficulty } = req.body;
   const monster = new Monster({
-    name: req.body.name,
-    HP: req.body.HP,
-    damage: req.body.damage,
-    difficulty: req.body.difficulty,
+    name: name,
+    HP: HP,
+    damage: damage,
+    difficulty: difficulty,
   });
 
   try {
