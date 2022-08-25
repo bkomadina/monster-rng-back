@@ -21,20 +21,22 @@ router.post('/add-monster', async (req, res) => {
 
 router.get('/monster/:difficulty', async (req, res) => {
   const monsterDifficulty = req.params.difficulty;
-  if (monsterDifficulty != 'easy' && monsterDifficulty != 'medium' && monsterDifficulty != 'hard') {
-    return res.status(404).json({ message: 'No such difficulty found'});
+  if (
+    monsterDifficulty != 'easy' &&
+    monsterDifficulty != 'medium' &&
+    monsterDifficulty != 'hard'
+  ) {
+    return res.status(404).json({ message: 'No such difficulty found' });
   }
   try {
     const randomMonster = await Monster.aggregate(
       [{ $match: { difficulty: monsterDifficulty } }, { $sample: { size: 1 } }],
       function (err, doc) {
         if (!doc) {
-          return res
-            .status(404)
-            .json({
-              message:
-                'No monsters found with selected difficulty, please create more',
-            });
+          return res.status(404).json({
+            message:
+              'No monsters found with selected difficulty, please create more',
+          });
         }
       }
     );
@@ -56,7 +58,7 @@ router.get('/lastcreated/:id', async (req, res) => {
         return res.status(404).json({ message: 'Your last created monster escaped. Create another one'});
       }
     }
-    );
+    ).clone();
     res.json({
       name: randomMonster.name,
       HP: randomMonster.HP,
