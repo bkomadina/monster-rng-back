@@ -1,17 +1,14 @@
-const dotenv = require('dotenv');
-const helmet = require('helmet');
-const express = require('express');
-const monstersRoutes = require('./routes/monsters');
+import { config } from 'dotenv';
+import helmet from 'helmet';
+import express, { json } from 'express';
+import monstersRoutes from './routes/monsters.mjs';
 
-dotenv.config();
+config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => console.log('Connected to the database'));
-
-app.use(express.json());
+app.use(json());
 app.use(helmet());
 app.use(monstersRoutes);
 

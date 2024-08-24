@@ -1,8 +1,7 @@
 import express from 'express';
-import insertMonster from './insertMonster.js';
-import getMonsterByDifficulty from './getMonsterByDifficulty.js';
-import updateMonster from './updateMonster.js';
-import deleteMonster from './deleteMonster.js';
+import insertMonster from '../database/insertMonster.mjs';
+import getMonsterByDifficulty from '../database/getMonsterByDifficulty.mjs';
+
 const router = express.Router();
 
 router.post('/add-monster', async (req, res) => {
@@ -51,7 +50,7 @@ router.get('/lastcreated/:id', async (req, res) => {
 
   try {
     const monster = await sql`SELECT * FROM monsters WHERE id = ${monsterId}`;
-    
+
     if (monster.length === 0) {
       return res
         .status(404)
@@ -69,4 +68,4 @@ router.get('/lastcreated/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

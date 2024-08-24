@@ -2,7 +2,7 @@
   "name": "monster-rng-fullstack",
   "version": "1.0.0",
   "description": "Monster generator and combat app",
-  "main": "app.js",
+  "main": "app.mjs",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

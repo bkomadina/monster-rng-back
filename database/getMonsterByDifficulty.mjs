@@ -1,4 +1,4 @@
-import sql from './db.js';
+import sql from './db.mjs';
 
 async function getMonsterByDifficulty(difficulty) {
   try {
