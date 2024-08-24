@@ -10,12 +10,12 @@
   "author": "Bartol Komadina",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "helmet": "^4.6.0",
-    "mongodb": "^3.6.6",
-    "mongoose": "^6.5.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "postgres": "^3.4.4"
   },
   "engines": {
-    "node": "14.15.4"
+    "node": "20.16.0"
   }
 }
