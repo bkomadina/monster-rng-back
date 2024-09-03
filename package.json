@@ -5,7 +5,7 @@
   "main": "app.mjs",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "seed": "psql -U monstersadmin -d monsters -f \"D:/Moje/Documents/Web Dev/Monster RNG/monster-rng-back/database/seeds/seed_monsters.sql\""
   },
   "author": "Bartol Komadina",
   "license": "ISC",

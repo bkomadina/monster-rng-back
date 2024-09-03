@@ -1,17 +1,17 @@
 -- Seed easy monsters
 INSERT INTO monstersschema.monsters (name, hp, damage, difficulty) VALUES
-('Bandit', 25, 8, 'easy'),
-('Goblin', 30, 10, 'easy'),
-('Orc', 40, 12, 'easy');
+('Bandit', 50, 7, 'easy'),
+('Goblin', 22, 20, 'easy'),
+('Orc', 60, 11, 'easy');
 
 -- Seed medium monsters
 INSERT INTO monstersschema.monsters (name, hp, damage, difficulty) VALUES
-('Banshee', 55, 18, 'medium'),
-('Troll', 60, 20, 'medium'),
-('Minotaur', 70, 22, 'medium');
+('Banshee', 30, 25, 'medium'),
+('Troll', 120, 8, 'medium'),
+('Minotaur', 70, 12, 'medium');
 
 -- Seed hard monsters
 INSERT INTO monstersschema.monsters (name, hp, damage, difficulty) VALUES
-('Giant', 100, 28, 'hard'),
-('Dragon', 110, 30, 'hard'),
-('Hydra', 120, 35, 'hard');
+('Giant', 130, 12, 'hard'),
+('Dragon', 80, 22, 'hard'),
+('Hydra', 50, 30, 'hard');
