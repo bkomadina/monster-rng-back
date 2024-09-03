@@ -3,10 +3,17 @@ import sql from '../database/db.mjs';
 
 const router = express.Router();
 
+const isDifficultyValid = (difficulty) => {
+  return !difficulty ||
+    (difficulty !== 'easy' && difficulty !== 'medium' && difficulty !== 'hard')
+    ? false
+    : true;
+};
+
 router.post('/add-monster', async (req, res) => {
   const { name, HP, damage, difficulty } = req.body;
 
-  if (!name || !HP || !damage || !difficulty) {
+  if (!name || !HP || !damage || !isDifficultyValid(difficulty)) {
     return res
       .status(404)
       .json({ message: 'All monster stats need to be provided' });
@@ -27,10 +34,7 @@ router.post('/add-monster', async (req, res) => {
 router.get('/monster/:difficulty', async (req, res) => {
   const difficulty = req.params.difficulty;
 
-  if (
-    !difficulty ||
-    (difficulty !== 'easy' && difficulty !== 'medium' && difficulty !== 'hard')
-  ) {
+  if (!isDifficultyValid(difficulty)) {
     return res.status(404).json({ message: 'No such difficulty found' });
   }
 
