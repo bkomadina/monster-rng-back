@@ -1,12 +1,14 @@
 import postgres from 'postgres';
+import { config } from 'dotenv';
+
+config();
 
 const sql = postgres({
-  host: 'localhost',
-  port: 5432,
-  user: 'admin',
-  password: 'kitun75',
-  database: 'monsters',
-  // ssl: { rejectUnauthorized: false }, // if you're using SSL
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 export default sql;

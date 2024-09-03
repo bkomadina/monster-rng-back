@@ -1,45 +1,53 @@
 import express from 'express';
-import insertMonster from '../database/insertMonster.mjs';
-import getMonsterByDifficulty from '../database/getMonsterByDifficulty.mjs';
+import sql from '../database/db.mjs';
 
 const router = express.Router();
 
 router.post('/add-monster', async (req, res) => {
   const { name, HP, damage, difficulty } = req.body;
 
+  if (!name || !HP || !damage || !difficulty) {
+    return res
+      .status(404)
+      .json({ message: 'All monster stats need to be provided' });
+  }
+
   try {
-    const newMonster = await insertMonster({ name, HP, damage, difficulty });
-    res.status(201).json(newMonster);
+    const result = await sql`
+      INSERT INTO monstersschema.monsters (name, HP, damage, difficulty)
+      VALUES (${name}, ${HP}, ${damage}, ${difficulty})
+      RETURNING name, HP, damage
+    `;
+    res.status(201).json(result[0]);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 });
 
 router.get('/monster/:difficulty', async (req, res) => {
-  const monsterDifficulty = req.params.difficulty;
+  const difficulty = req.params.difficulty;
 
   if (
-    monsterDifficulty != 'easy' &&
-    monsterDifficulty != 'medium' &&
-    monsterDifficulty != 'hard'
+    !difficulty ||
+    (difficulty !== 'easy' && difficulty !== 'medium' && difficulty !== 'hard')
   ) {
     return res.status(404).json({ message: 'No such difficulty found' });
   }
 
   try {
-    const randomMonster = await getMonsterByDifficulty(monsterDifficulty);
+    const result = await sql`
+      SELECT * FROM monstersschema.monsters
+      WHERE difficulty = ${difficulty}
+      ORDER BY RANDOM()
+      LIMIT 1
+    `;
 
-    if (!randomMonster) {
-      return res.status(404).json({
-        message:
-          'No monsters found with selected difficulty, please create more',
-      });
+    if (!result || result.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No monsters found with the selected difficulty' });
     }
-    res.json({
-      name: randomMonster.name,
-      HP: randomMonster.HP,
-      damage: randomMonster.damage,
-    });
+    res.json(result[0]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -48,21 +56,19 @@ router.get('/monster/:difficulty', async (req, res) => {
 router.get('/lastcreated/:id', async (req, res) => {
   const monsterId = req.params.id;
 
-  try {
-    const monster = await sql`SELECT * FROM monsters WHERE id = ${monsterId}`;
-
-    if (monster.length === 0) {
-      return res
-        .status(404)
-        .json({
-          message: 'Your last created monster escaped. Create another one',
-        });
-    }
-    res.json({
-      name: monster[0].name,
-      HP: monster[0].HP,
-      damage: monster[0].damage,
+  if (!monsterId) {
+    return res.status(404).json({
+      message: 'Your last created monster escaped. Create another one',
     });
+  }
+
+  try {
+    const result =
+      await sql`SELECT * FROM monstersschema.monsters WHERE id = ${monsterId}`;
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'Monster not found' });
+    }
+    res.json(result[0]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
