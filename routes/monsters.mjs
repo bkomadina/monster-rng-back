@@ -23,7 +23,7 @@ router.post('/add-monster', async (req, res) => {
     const result = await sql`
       INSERT INTO monstersschema.monsters (name, HP, damage, difficulty)
       VALUES (${name}, ${HP}, ${damage}, ${difficulty})
-      RETURNING name, HP, damage
+      RETURNING id, name, HP, damage
     `;
     res.status(201).json(result[0]);
   } catch (err) {
