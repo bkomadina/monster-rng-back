@@ -1,0 +1,14 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"  # Map host port 8000 to container port 8000
+    env_file: .env   # Load environment variables from .env file
+    networks:
+      - app-network   # Define a network for communication (if needed)
+  
+networks:
+  app-network:
+    driver: bridge  # Use the default bridge network

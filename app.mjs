@@ -7,7 +7,7 @@ import monstersRoutes from './routes/monsters.mjs';
 config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const corsOptions = {
   // Allowed origins
   origin: 'http://localhost:1234',

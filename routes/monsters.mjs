@@ -53,6 +53,7 @@ router.get('/monster/:difficulty', async (req, res) => {
     }
     res.json(result[0]);
   } catch (err) {
+    console.error('Error retrieving monster with difficulty:', err);
     res.status(500).json({ message: err.message });
   }
 });
@@ -74,6 +75,7 @@ router.get('/lastcreated/:id', async (req, res) => {
     }
     res.json(result[0]);
   } catch (err) {
+    console.error('Error retrieving lastcreated:', err);
     res.status(500).json({ message: err.message });
   }
 });
