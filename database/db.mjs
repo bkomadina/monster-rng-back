@@ -11,4 +11,12 @@ const sql = postgres({
   database: process.env.DB_NAME,
 });
 
+console.log('Attempting to connect to the database...');
+
+sql`SELECT 1`.then(() => {
+    console.log('Database connection successful.');
+}).catch(err => {
+    console.error('Database connection error:', err);
+});
+
 export default sql;
