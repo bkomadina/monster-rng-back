@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: monster-rng-back
+    env: docker
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
