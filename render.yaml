@@ -5,4 +5,4 @@ services:
     dockerfilePath: ./Dockerfile  
     autoDeploy: true               
     region: frankfurt
-    # plan: free
+    plan: free
