@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: my-backend
-    runtime: docker
-    dockerfilePath: ./Dockerfile  
-    autoDeploy: true               
-    region: frankfurt
-    plan: free

@@ -8,10 +8,17 @@ config();
 
 const app = express();
 const port = process.env.PORT || 8000;
-const whitelist = ["http://localhost:1234", "https://monster-rng.netlify.app"];
+console.log('port: ', port);
+const whitelist = [
+  "http://localhost:1234",
+  "http://localhost:8000",
+  "https://monster-rng.netlify.app",
+];
 const corsOptions = {
   // Allowed origins
   origin: function (origin, callback) {
+    console.log("Request Origin:", origin);
+    
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
