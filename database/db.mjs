@@ -14,7 +14,6 @@ config();
 //         database: process.env.DB_NAME,
 //       });
 const sql = postgres(process.env.DB_URL);
-console.log('process.env.DB_URL: ', process.env.DB_URL);
 
 console.log("Attempting to connect to the database...");
 
