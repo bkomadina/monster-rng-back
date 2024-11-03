@@ -8,7 +8,7 @@ config();
 
 const app = express();
 const port = process.env.PORT || 8000;
-console.log('port: ', port);
+console.log("port: ", port);
 const whitelist = [
   "http://localhost:1234",
   "http://localhost:8000",
@@ -16,15 +16,16 @@ const whitelist = [
 ];
 const corsOptions = {
   // Allowed origins
-  origin: function (origin, callback) {
-    console.log("Request Origin:", origin);
-    
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  // origin: function (origin, callback) {
+  //   console.log("Request Origin:", origin);
+
+  //   if (whitelist.indexOf(origin) !== -1) {
+  //     callback(null, true);
+  //   } else {
+  //     callback(new Error("Not allowed by CORS"));
+  //   }
+  // },
+  origin: "*",
   methods: "GET,POST",
 };
 
