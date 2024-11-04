@@ -80,4 +80,8 @@ router.get("/lastcreated/:id", async (req, res) => {
   }
 });
 
+router.get("/ping", async (req, res) => {
+  res.send("Server pinged");
+});
+
 export default router;
